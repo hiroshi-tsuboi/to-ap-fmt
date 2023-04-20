@@ -34,6 +34,7 @@ def aformat(line, rubyState, rubyChar, reProgram):
             elif mode == 0:
                 if 1 < n and len(w) == 0:
                     a += c
+                    continue
                 elif n == 1:
                     a += w
                     w = ""

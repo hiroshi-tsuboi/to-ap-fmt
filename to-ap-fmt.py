@@ -13,11 +13,15 @@ def aformat(line, rubyState, rubyChar, reProgram):
             n = rubyState[c]
             if n == 3:
                 if mode == 2:
-                    a += rubyChar[1]
-                    a += w
-                    a += rubyChar[2]
-                    a += r
-                    a += rubyChar[3]
+                    if 0 < len(r):
+                        a += rubyChar[1]
+                        a += w
+                        a += rubyChar[2]
+                        a += r
+                        a += rubyChar[3]
+                    else:
+                        a += w
+                        a += c
                 elif 0 < mode:
                     print("error in %s" % line)
                     return line
@@ -29,7 +33,7 @@ def aformat(line, rubyState, rubyChar, reProgram):
                 continue
             elif mode == 0:
                 if 1 < n and len(w) == 0:
-                    pass
+                    a += c
                 elif n == 1:
                     a += w
                     w = ""
@@ -53,7 +57,7 @@ def aformat(line, rubyState, rubyChar, reProgram):
     result = a + w
 
     if result != line:
-        #print("replace %s -> %s" % (line, result))
+        print("replace %s -> %s" % (line, result))
         pass
 
     return result
